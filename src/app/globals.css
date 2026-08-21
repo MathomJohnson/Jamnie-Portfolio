@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/*
+ * Palette is fixed by Jamnie's spec: paper #EDE6D8, ink #2A251F, muted #B8A98C.
+ * Project pages override --paper/--ink/--muted locally to swap the whole scheme.
+ */
+:root {
+  --paper: #ede6d8;
+  --paper-deep: #e5dccb;
+  --ink: #2a251f;
+  --muted: #b8a98c;
+
+  --grid-minor: 8px;
+  --grid-major: 96px;
+
+  --ease-out-quint: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+
+  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+html {
+  background-color: var(--paper);
+  color: var(--ink);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--muted) 60%, transparent);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 4px;
+}
+
+/* Drafting sheet: fine minor grid over a heavier major grid, plus a paper vignette.
+   Fixed so the whole site reads as one continuous sheet rather than per-section paper. */
+.drafting-grid {
+  background-image:
+    radial-gradient(
+      ellipse 120% 90% at 50% 40%,
+      transparent 45%,
+      color-mix(in srgb, var(--muted) 22%, transparent) 100%
+    ),
+    repeating-linear-gradient(
+      to right,
+      color-mix(in srgb, var(--muted) 42%, transparent) 0 1px,
+      transparent 1px var(--grid-major)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--muted) 42%, transparent) 0 1px,
+      transparent 1px var(--grid-major)
+    ),
+    repeating-linear-gradient(
+      to right,
+      color-mix(in srgb, var(--muted) 20%, transparent) 0 1px,
+      transparent 1px var(--grid-minor)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--muted) 20%, transparent) 0 1px,
+      transparent 1px var(--grid-minor)
+    );
+}
+
+/* Vertical-only, one-section-per-screen snap, per the spec.
+   Relaxed to proximity on small screens so long copy is never clipped. */
+html {
+  scroll-snap-type: y proximity;
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+
+  .snap-section {
+    scroll-snap-stop: always;
+  }
+}
+
+.snap-section {
+  scroll-snap-align: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
