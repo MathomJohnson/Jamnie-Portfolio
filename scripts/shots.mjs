@@ -56,6 +56,9 @@ async function shoot(browser, name, opts) {
   await page.close();
 }
 
+const fsfSections = ["overview", "system", "question", "identity", "hands", "ninety", "kitchen", "we"];
+const fsf = "/projects/feeding-san-francisco";
+
 const desktop = { width: 1440, height: 900 };
 const laptop = { width: 1280, height: 720 };
 const phone = { width: 390, height: 844 };
@@ -75,10 +78,61 @@ await withBrowser(POINTER_DEVICE, async (browser) => {
     scrollTo: "#contact",
     hover: 'a[href^="mailto:"]',
   });
-  await shoot(browser, "d7-irene", { ...desktop, url: "/projects/irene" });
-  await shoot(browser, "d8-virgo", { ...desktop, url: "/projects/virgo" });
+  await shoot(browser, "d7-irene-front", { ...desktop, url: "/projects/irene" });
+  await shoot(browser, "d7b-irene-front-caption", {
+    ...desktop,
+    url: "/projects/irene",
+    hover: "#slide-front .slide",
+    wait: 2800,
+  });
+  await shoot(browser, "d7c-irene-backstory", {
+    ...desktop,
+    url: "/projects/irene",
+    scrollTo: "#slide-backstory",
+  });
+  await shoot(browser, "d7d-irene-spin", {
+    ...desktop,
+    url: "/projects/irene",
+    scrollTo: "#slide-spin",
+    wait: 3500,
+  });
+  await shoot(browser, "d7e-irene-balcony", {
+    ...desktop,
+    url: "/projects/irene",
+    scrollTo: "#slide-balcony",
+    wait: 3500,
+  });
+  await shoot(browser, "d7f-irene-roof", {
+    ...desktop,
+    url: "/projects/irene",
+    scrollTo: "#slide-roof",
+  });
+  await shoot(browser, "d7g-irene-level", {
+    ...desktop,
+    url: "/projects/irene",
+    scrollTo: "#slide-level-01",
+  });
+  await shoot(browser, "d7h-irene-units", {
+    ...desktop,
+    url: "/projects/irene",
+    scrollTo: "#slide-units",
+  });
+  await shoot(browser, "d7i-irene-elevations", {
+    ...desktop,
+    url: "/projects/irene",
+    scrollTo: "#slide-elevations",
+  });
+  await shoot(browser, "d7j-irene-glazing", {
+    ...desktop,
+    url: "/projects/irene",
+    scrollTo: "#slide-glazing",
+  });
   await shoot(browser, "l1-hero", { ...laptop });
   await shoot(browser, "l2-gallery", { ...laptop, scrollTo: "#work" });
+  for (const [i, id] of fsfSections.entries()) {
+    await shoot(browser, `d9-fsf-${i + 1}-${id}`, { ...desktop, url: fsf, scrollTo: `#${id}` });
+    await shoot(browser, `l9-fsf-${i + 1}-${id}`, { ...laptop, url: fsf, scrollTo: `#${id}` });
+  }
 });
 
 await withBrowser(TOUCH_DEVICE, async (browser) => {
@@ -86,5 +140,33 @@ await withBrowser(TOUCH_DEVICE, async (browser) => {
   await shoot(browser, "m2-about", { ...phone, scrollTo: "#about" });
   await shoot(browser, "m3-gallery", { ...phone, scrollTo: "#work" });
   await shoot(browser, "m4-contact", { ...phone, scrollTo: "#contact" });
+  for (const [i, id] of fsfSections.entries()) {
+    await shoot(browser, `m9-fsf-${i + 1}-${id}`, { ...phone, url: fsf, scrollTo: `#${id}` });
+  }
   await shoot(browser, "m5-irene", { ...phone, url: "/projects/irene" });
+  await shoot(browser, "m6-irene-backstory", {
+    ...phone,
+    url: "/projects/irene",
+    scrollTo: "#slide-backstory",
+  });
+  await shoot(browser, "m7-irene-level", {
+    ...phone,
+    url: "/projects/irene",
+    scrollTo: "#slide-level-01",
+  });
+  await shoot(browser, "m7b-irene-units", {
+    ...phone,
+    url: "/projects/irene",
+    scrollTo: "#slide-units",
+  });
+  await shoot(browser, "m7c-irene-elevations", {
+    ...phone,
+    url: "/projects/irene",
+    scrollTo: "#slide-elevations",
+  });
+  await shoot(browser, "m7d-irene-glazing", {
+    ...phone,
+    url: "/projects/irene",
+    scrollTo: "#slide-glazing",
+  });
 });

@@ -50,7 +50,7 @@ export function Hero() {
         <div>
           <motion.p
             variants={riseVariants}
-            className="font-mono text-[0.6875rem] tracking-[0.28em] text-ink/55 uppercase"
+            className="label"
           >
             {site.sheetLabel}
           </motion.p>

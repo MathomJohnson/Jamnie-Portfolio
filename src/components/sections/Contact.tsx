@@ -46,15 +46,15 @@ export function Contact() {
         variants={stagger(0.06)}
         className="mx-auto mt-16 w-full max-w-6xl"
       >
-        <motion.div variants={riseVariants} className="h-px w-full bg-ink/15" />
+        <motion.div variants={riseVariants} className="h-px w-full bg-ink/25" />
         <motion.div
           variants={riseVariants}
-          className="flex flex-col items-center gap-2 pt-5 font-mono text-[0.625rem] tracking-[0.22em] text-ink/40 uppercase sm:flex-row sm:justify-between sm:gap-3"
+          className="label flex flex-col items-center gap-2 pt-5 sm:flex-row sm:justify-between sm:gap-3"
         >
           <span>{site.name}</span>
           <a
             href={`mailto:${site.email}`}
-            className="tracking-[0.12em] lowercase transition-colors hover:text-ink"
+            className="lowercase transition-colors hover:text-ink"
           >
             {site.email}
           </a>

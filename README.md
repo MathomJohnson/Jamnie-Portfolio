@@ -26,9 +26,24 @@ Then open http://localhost:3000.
 
 ## Current state
 
-The main page is finished. The three project pages are deliberate placeholders — they
-apply each project's palette and link back to the gallery, but the slide walkthroughs
-are not built yet.
+The main page is finished. **Irene** (`/projects/irene`) is the first full project
+walkthrough: nine scroll-snap slides (front render, backstory, drag-to-rotate 360,
+balcony crossfade, roof plan, first floor, typical units, elevations, and
+storefront glazing).
+
+**Feeding San Francisco** (`/projects/feeding-san-francisco`) tells the project's second
+year in eight home-style sections on the beige sheet, with the logo red (`#C22B26`) as
+accent. Copy is from Jamnie's "Second Year Evolution" write-up and lives in
+[`src/lib/projects/feeding-san-francisco.ts`](src/lib/projects/feeding-san-francisco.ts);
+images are in `public/images/projects/feeding-san-francisco/`.
+
+### Irene turntable frames
+
+The 360 slide uses 48 frames at
+`public/turntables/irene-turntable/01.webp` …
+`48.webp` (2400px wide). `frameCount`, `framePad`, and `frameExt` in
+[`src/lib/projects/irene.ts`](src/lib/projects/irene.ts) must match that folder.
+
 
 ## What still needs real content
 
@@ -41,13 +56,6 @@ comment so they are easy to find.
 - **Contact quote** — Jamnie picks the quote she wants to close on.
 - **LinkedIn URL** — currently points at linkedin.com.
 - **Resume** — replace `public/Jamnie-Whawhen-Resume.pdf` with the real file.
-- **Virgo and Feeding San Francisco thumbnails** — currently drawing-sheet placeholder
-  SVGs in `public/images/`. Swap in real renders and update `thumbnail` in
-  `src/lib/projects.ts`.
-- **Virgo and Feeding San Francisco palettes** — Jamnie has only specified Irene's
-  (near-black `#100E0E`, brick `#6E1220`, steel `#A7ABB2`). The other two use holding
-  values.
-- **Project year and discipline** — set for Irene, `TBC` for the other two.
 
 Her About statement and the beige palette are taken verbatim from her brief and should
 not be changed without asking her.
@@ -57,8 +65,10 @@ not be changed without asking her.
 - **Palette.** Paper `#EDE6D8`, ink `#2A251F`, muted accent `#B8A98C`, defined as CSS
   custom properties in [`src/app/globals.css`](src/app/globals.css). Project pages
   override them locally.
-- **Type.** Cormorant Garamond for display (leaning on its italic), Inter for body,
-  IBM Plex Mono for the drawing-sheet labels and index numbers.
+- **Type.** Cormorant Garamond for display on the main page, Inter for body,
+  IBM Plex Mono for sheet labels. Irene uses Big Shoulders for condensed titles
+  on its own near-black / brick / steel palette (`#100E0E`, `#6E1220`, `#C81E3A`,
+  `#A7ABB2`).
 - **Scroll snap.** Mandatory vertical snap at `md` and above, relaxed to proximity on
   phones so long copy is never clipped, and disabled entirely under
   `prefers-reduced-motion`.

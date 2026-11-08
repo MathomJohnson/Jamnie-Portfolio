@@ -25,6 +25,7 @@
   --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --font-condensed: var(--font-big-shoulders), ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -43,6 +44,16 @@ body {
 ::selection {
   background-color: color-mix(in srgb, var(--muted) 60%, transparent);
   color: var(--ink);
+}
+
+/* One readable mono label for the hero sheet label, section headers and footer. */
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ink) 82%, transparent);
 }
 
 :focus-visible {
@@ -101,10 +112,78 @@ html {
   scroll-snap-align: start;
 }
 
+/* Irene project page: own scroller so home-page snap on html does not apply. */
+html:has(.project-irene) {
+  scroll-snap-type: none;
+  overflow: hidden;
+}
+
+html:has(.project-irene) body {
+  overflow: hidden;
+  background-color: #100e0e;
+}
+
+.project-irene {
+  --irene-bg: #100e0e;
+  --irene-paper: #ece6d9;
+  --irene-paper-dim: #dcd4c2;
+  --irene-brick: #6e1220;
+  --irene-accent: #c81e3a;
+  --irene-steel: #a7abb2;
+  --irene-steel-dim: #6b6f75;
+  --irene-ink: #1c1815;
+}
+
+.irene-scroller {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  background: var(--irene-bg);
+}
+
+.irene-slide {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  background: var(--irene-bg);
+}
+
+.irene-slide-brick {
+  background: var(--irene-brick);
+}
+
+.slide-caption {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.slide:hover .slide-caption,
+.slide:focus-within .slide-caption,
+.slide[data-open="true"] .slide-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.irene-line-art {
+  filter: invert(1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
     scroll-snap-type: none;
+  }
+
+  .irene-scroller {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+
+  .slide-caption {
+    opacity: 1;
+    transform: none;
   }
 
   *,

@@ -17,5 +17,4 @@
 
   <text x="80" y="116" fill="#B8A98C" fill-opacity="0.85" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="24" letter-spacing="5">VIRGO</text>
   <text x="80" y="150" fill="#B8A98C" fill-opacity="0.5" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="17" letter-spacing="3.5">PLACE IMAGE</text>
-  <text x="820" y="116" text-anchor="end" fill="#B8A98C" fill-opacity="0.5" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="17" letter-spacing="3.5">A-002</text>
 </svg>
