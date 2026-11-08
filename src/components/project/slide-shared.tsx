@@ -9,7 +9,7 @@ type SlideCaptionProps = {
 
 export function SlideCaption({ heading, caption }: SlideCaptionProps) {
   return (
-    <div className="slide-caption pointer-events-none absolute inset-x-0 bottom-0 z-10 px-6 py-10 sm:px-12 sm:py-12 lg:px-16">
+    <div className="slide-caption pointer-events-none relative z-10 px-6 pt-5 pb-14 sm:px-12 md:absolute md:inset-x-0 md:bottom-0 md:py-12 lg:px-16">
       <h3 className="font-condensed text-[1.75rem] leading-none font-extrabold tracking-[0.04em] text-[var(--irene-accent)] uppercase sm:text-[1.75rem]">
         {heading}
       </h3>
@@ -57,7 +57,7 @@ export function SlideShell({
     <section
       id={id}
       data-slide
-      className={`irene-slide relative h-dvh w-full shrink-0 snap-start snap-always ${className}`}
+      className={`irene-slide relative w-full shrink-0 md:h-dvh md:snap-start md:snap-always ${className}`}
     >
       {children}
     </section>

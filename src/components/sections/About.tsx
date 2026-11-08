@@ -31,7 +31,7 @@ export function About() {
               className="object-cover object-top"
             />
           </div>
-          <figcaption className="mt-2.5 flex justify-end font-mono text-[0.625rem] tracking-[0.22em] text-ink/45 uppercase">
+          <figcaption className="mt-2.5 hidden justify-end md:flex font-mono text-[0.625rem] tracking-[0.22em] text-ink/45 uppercase">
             <span>Fig. 02</span>
           </figcaption>
         </motion.figure>

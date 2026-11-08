@@ -37,7 +37,11 @@ export function CrossfadeSlide({ slide }: { slide: IreneSlide }) {
 
   return (
     <SlideShell id={`slide-${slide.id}`}>
-      <div ref={rootRef} className="slide relative h-full w-full" tabIndex={0} {...tap}>
+      <div ref={rootRef} className="slide relative w-full md:h-full" tabIndex={0} {...tap}>
+        <div
+          className="relative w-full max-md:aspect-[var(--ar)] md:absolute md:inset-0"
+          style={{ "--ar": `${slide.width} / ${slide.height}` } as React.CSSProperties}
+        >
         {sources.map((src, index) => (
           <Image
             key={src}
@@ -50,6 +54,7 @@ export function CrossfadeSlide({ slide }: { slide: IreneSlide }) {
             }`}
           />
         ))}
+        </div>
         <SlideCaption heading={slide.heading} caption={slide.caption} />
       </div>
     </SlideShell>

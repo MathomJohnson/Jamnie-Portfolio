@@ -87,7 +87,7 @@ export function SlideDeck({ children, onActiveChange }: SlideDeckProps) {
   return (
     <div
       ref={scrollerRef}
-      className="irene-scroller h-dvh overflow-y-auto overflow-x-hidden"
+      className="irene-scroller overflow-x-hidden pt-14 md:h-dvh md:overflow-y-auto md:pt-0"
     >
       {children}
     </div>

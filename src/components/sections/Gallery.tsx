@@ -39,9 +39,9 @@ function ProjectTile({ project }: { project: Project }) {
       aria-label={`Open the ${project.title} project`}
       className="group relative block overflow-hidden border border-ink/15 transition-[border-color,box-shadow,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-ink/45 hover:shadow-[0_18px_40px_-18px_rgba(42,37,31,0.55)] focus-visible:-translate-y-1 focus-visible:border-ink/45 focus-visible:shadow-[0_18px_40px_-18px_rgba(42,37,31,0.55)]"
     >
-      {/* Short landscape crops on phones keep both tiles inside one screen. */}
+      {/* 4:3 tiles on phones; tall portrait tiles from sm up. */}
       <div
-        className="relative h-[21vh] max-h-[30rem] min-h-[8.5rem] w-full sm:h-[52vh] sm:min-h-[16rem]"
+        className="relative aspect-[4/3] w-full sm:aspect-auto sm:h-[52vh] sm:max-h-[30rem] sm:min-h-[16rem]"
         style={project.thumbnailContain ? { backgroundColor: project.palette.paper } : undefined}
       >
         <Image

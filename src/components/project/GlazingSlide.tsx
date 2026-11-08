@@ -7,7 +7,7 @@ import { SlideShell } from "@/components/project/slide-shared";
 export function GlazingSlide() {
   return (
     <SlideShell id="slide-glazing" className="irene-slide-brick">
-      <div className="flex h-full flex-col justify-between px-6 py-24 sm:px-14 sm:py-28 lg:px-20">
+      <div className="flex h-full flex-col justify-between px-6 py-16 sm:px-14 md:py-28 lg:px-20">
         <div className="grid min-h-0 flex-1 content-center grid-cols-1 gap-10 md:grid-cols-[minmax(0,16rem)_1fr] md:gap-16">
           <div>
             <h2 className="font-condensed text-[clamp(2.25rem,5vw,3.5rem)] leading-[0.9] font-black tracking-[0.04em] text-[var(--irene-paper)] uppercase">

@@ -69,9 +69,15 @@ not be changed without asking her.
   IBM Plex Mono for sheet labels. Irene uses Big Shoulders for condensed titles
   on its own near-black / brick / steel palette (`#100E0E`, `#6E1220`, `#C81E3A`,
   `#A7ABB2`).
-- **Scroll snap.** Mandatory vertical snap at `md` and above, relaxed to proximity on
-  phones so long copy is never clipped, and disabled entirely under
+- **Scroll snap.** Mandatory one-section-per-screen snap from `md` (768px) up. Phones
+  have no snap at all: sections size to their content and the page scrolls freely. Irene's
+  slide deck follows the same split (its own snapping scroller on desktop, a plain page
+  with captions under each image on phones). Snap is off entirely under
   `prefers-reduced-motion`.
+- **Light only.** `color-scheme: only light` (CSS and the viewport meta) stops phone
+  browsers' automatic dark mode from repainting the palette.
+- **Phones are pared back.** Figure captions ("Fig. 0X") and the hero's registration marks
+  are hidden below `sm`/`md`.
 - **Gallery hover.** Project names are hidden by default and fade up over a scrim on
   hover or keyboard focus. On touch devices (`@media (hover: none)`) they are always
   visible, since there is no hover state to discover them with.

@@ -20,7 +20,8 @@ const lede = "font-display text-[clamp(1.0625rem,1.6vw,1.375rem)] leading-[1.55]
 
 /** Home-page building blocks (Section, SectionLabel, Fig. captions) on the beige sheet, with the FSF red as accent. */
 export function FeedingSanFranciscoProject({ project }: { project: Project }) {
-  const number = String(projects.indexOf(project) + 1).padStart(2, "0");
+  // Match by slug: the prop is a serialized copy, so indexOf(project) would miss.
+  const number = String(projects.findIndex((p) => p.slug === project.slug) + 1).padStart(2, "0");
   const total = String(projects.length).padStart(2, "0");
 
   return (
@@ -33,7 +34,7 @@ export function FeedingSanFranciscoProject({ project }: { project: Project }) {
 
       <main className="relative z-10">
         {/* 01 Overview */}
-        <Section id="overview">
+        <Section id="overview" className="pt-24">
           <motion.div
             initial="hidden"
             animate="visible"
@@ -71,7 +72,7 @@ export function FeedingSanFranciscoProject({ project }: { project: Project }) {
                 width={img.logo.width}
                 height={img.logo.height}
                 priority
-                className="mx-auto h-auto max-h-[min(52dvh,30rem)] w-auto max-w-full"
+                className="mx-auto h-auto max-h-56 w-auto max-w-full md:max-h-[min(52dvh,30rem)]"
               />
             </motion.div>
           </motion.div>
@@ -204,7 +205,7 @@ export function FeedingSanFranciscoProject({ project }: { project: Project }) {
         </Sheet>
 
         {/* 08 We */}
-        <Section id="we">
+        <Section id="we" className="pb-28">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -254,9 +255,9 @@ function Sheet({ id, index, title, children }: { id: string; index: string; titl
 
 function Caption({ fig, label }: { fig: string; label: string }) {
   return (
-    <figcaption className="mt-2.5 flex justify-between gap-4 font-mono text-[0.625rem] tracking-[0.22em] text-ink/45 uppercase">
-      {/* Two-up figures are too narrow on phones for both, so the label drops out. */}
-      <span className="hidden sm:inline">{label}</span>
+    // Desktop only: phones get the images alone, for a compact layout.
+    <figcaption className="mt-2.5 hidden justify-between gap-4 font-mono text-[0.625rem] tracking-[0.22em] text-ink/45 uppercase sm:flex">
+      <span>{label}</span>
       <span className="ml-auto whitespace-nowrap">Fig. {fig}</span>
     </figcaption>
   );

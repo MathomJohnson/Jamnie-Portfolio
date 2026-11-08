@@ -5,6 +5,7 @@
  * Project pages override --paper/--ink/--muted locally to swap the whole scheme.
  */
 :root {
+  color-scheme: only light;
   --paper: #ede6d8;
   --paper-deep: #e5dccb;
   --ink: #2a251f;
@@ -92,12 +93,7 @@ body {
     );
 }
 
-/* Vertical-only, one-section-per-screen snap, per the spec.
-   Relaxed to proximity on small screens so long copy is never clipped. */
-html {
-  scroll-snap-type: y proximity;
-}
-
+/* One-section-per-screen snap on desktop only; phones get plain smooth scrolling. */
 @media (min-width: 768px) {
   html {
     scroll-snap-type: y mandatory;
@@ -112,15 +108,21 @@ html {
   scroll-snap-align: start;
 }
 
-/* Irene project page: own scroller so home-page snap on html does not apply. */
+/* Irene project page: on desktop it has its own snapping scroller, so the page itself
+   does not scroll. Phones scroll the page normally with no snap. */
 html:has(.project-irene) {
   scroll-snap-type: none;
-  overflow: hidden;
 }
 
 html:has(.project-irene) body {
-  overflow: hidden;
   background-color: #100e0e;
+}
+
+@media (min-width: 768px) {
+  html:has(.project-irene),
+  html:has(.project-irene) body {
+    overflow: hidden;
+  }
 }
 
 .project-irene {
@@ -135,35 +137,46 @@ html:has(.project-irene) body {
 }
 
 .irene-scroller {
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
   background: var(--irene-bg);
 }
 
 .irene-slide {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   background: var(--irene-bg);
+}
+
+@media (min-width: 768px) {
+  .irene-scroller {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .irene-slide {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
 }
 
 .irene-slide-brick {
   background: var(--irene-brick);
 }
 
-.slide-caption {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
-  opacity: 0;
-  transform: translateY(12px);
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
+/* Desktop: captions fade up over the slide on hover. Phones: always shown under the image. */
+@media (min-width: 768px) {
+  .slide-caption {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
 
-.slide:hover .slide-caption,
-.slide:focus-within .slide-caption,
-.slide[data-open="true"] .slide-caption {
-  opacity: 1;
-  transform: translateY(0);
+  .slide:hover .slide-caption,
+  .slide:focus-within .slide-caption,
+  .slide[data-open="true"] .slide-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .irene-line-art {

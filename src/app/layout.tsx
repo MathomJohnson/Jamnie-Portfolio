@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, IBM_Plex_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -27,6 +27,12 @@ export const metadata: Metadata = {
   title: "Jamnie Whawhen — Architecture Portfolio",
   description:
     "Architecture portfolio of Jamnie Whawhen. Exterior-led work in mass, material and gesture.",
+};
+
+// The palette is fixed: opt out of browsers' automatic dark mode (Chrome, Samsung Internet).
+export const viewport: Viewport = {
+  colorScheme: "only light",
+  themeColor: "#EDE6D8",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

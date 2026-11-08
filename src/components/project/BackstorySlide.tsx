@@ -15,7 +15,7 @@ export function BackstorySlide() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.45 }}
         variants={stagger(0.12, 0.1)}
-        className="mx-auto flex h-full w-full max-w-5xl flex-col justify-center px-6 py-24 sm:px-12 lg:px-16"
+        className="mx-auto flex h-full w-full max-w-5xl flex-col justify-center px-6 py-16 sm:px-12 md:py-24 lg:px-16"
       >
         <motion.p
           variants={riseVariants}

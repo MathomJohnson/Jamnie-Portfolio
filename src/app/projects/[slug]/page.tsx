@@ -54,7 +54,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
 
   if (slug === "irene") {
     return (
-      <div className={`${bigShoulders.variable} h-dvh`}>
+      <div className={`${bigShoulders.variable} md:h-dvh`}>
         <IreneProject />
       </div>
     );

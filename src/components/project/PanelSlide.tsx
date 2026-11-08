@@ -6,7 +6,6 @@ import type { IrenePanel, IreneSlide } from "@/lib/projects/irene";
 import { SlideCaption, SlideShell, useTapCaption } from "@/components/project/slide-shared";
 
 const COLUMN_GAP = 32;
-const ROW_GAP = 20;
 
 function useSharedScale(panels: readonly IrenePanel[]) {
   const frameRef = useRef<HTMLDivElement>(null);
@@ -27,12 +26,9 @@ function useSharedScale(panels: readonly IrenePanel[]) {
       const stacked = !window.matchMedia("(min-width: 768px)").matches;
       const count = panels.length;
 
+      // Stacked (phones) the slide grows with its content, so only width limits the scale.
       const next = stacked
-        ? Math.min(
-            innerW / Math.max(...panels.map((panel) => panel.width)),
-            (innerH - ROW_GAP * (count - 1) - labelH * count) /
-              panels.reduce((sum, panel) => sum + panel.height, 0),
-          )
+        ? innerW / Math.max(...panels.map((panel) => panel.width))
         : Math.min(
             (innerW - COLUMN_GAP * (count - 1)) /
               panels.reduce((sum, panel) => sum + panel.width, 0),
@@ -75,7 +71,7 @@ function UniformPlans({ panels }: { panels: readonly IrenePanel[] }) {
   return (
     <div
       ref={frameRef}
-      className="flex min-h-0 flex-1 items-center justify-center px-6 pt-24 pb-32 sm:px-10 md:px-14 md:pt-28"
+      className="flex min-h-0 flex-1 items-center justify-center px-6 pt-8 sm:px-10 md:px-14 md:pt-28 md:pb-32"
     >
       <div className="flex flex-col items-center gap-5 md:flex-row md:items-center md:gap-8">
         {panels.map((panel) => {
@@ -108,15 +104,18 @@ export function PanelSlide({ slide }: { slide: IreneSlide }) {
 
   return (
     <SlideShell id={`slide-${slide.id}`}>
-      <div className="slide relative flex h-full w-full flex-col" tabIndex={0} {...tap}>
+      <div className="slide relative flex w-full flex-col md:h-full" tabIndex={0} {...tap}>
         {uniform ? (
           <UniformPlans panels={panels} />
         ) : (
-          <div className="grid min-h-0 flex-1 grid-rows-2 gap-6 px-6 pt-24 pb-36 sm:px-12 md:grid-cols-[0.55fr_1fr] md:grid-rows-1 md:gap-10 md:px-16 md:pt-28">
+          <div className="grid min-h-0 flex-1 gap-8 px-6 pt-8 sm:px-12 md:grid-cols-[0.55fr_1fr] md:grid-rows-1 md:gap-10 md:px-16 md:pt-28 md:pb-36">
             {panels.map((panel) => (
               <figure key={panel.sheet} className="flex min-h-0 min-w-0 flex-col">
                 <PlanLabel panel={panel} />
-                <div className="relative min-h-0 flex-1">
+                <div
+                  className="relative min-h-0 flex-1 max-md:max-h-[65svh] max-md:aspect-[var(--ar)]"
+                  style={{ "--ar": `${panel.width} / ${panel.height}` } as React.CSSProperties}
+                >
                   <Image
                     src={panel.src}
                     alt={panel.alt}

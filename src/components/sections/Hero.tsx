@@ -40,7 +40,7 @@ export function Hero() {
           </div>
           <motion.figcaption
             variants={fadeVariants}
-            className="mt-3 flex justify-between font-mono text-[0.625rem] tracking-[0.22em] text-ink/45 uppercase"
+            className="mt-3 hidden justify-between font-mono sm:flex text-[0.625rem] tracking-[0.22em] text-ink/45 uppercase"
           >
             <span>{site.name}</span>
             <span>Fig. 01</span>
@@ -110,7 +110,7 @@ function RegistrationMarks() {
         <span
           key={position}
           aria-hidden
-          className={`pointer-events-none absolute h-6 w-6 border-ink/30 ${position}`}
+          className={`pointer-events-none absolute hidden h-6 w-6 border-ink/30 sm:block ${position}`}
         />
       ))}
     </>

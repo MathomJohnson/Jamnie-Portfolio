@@ -25,7 +25,7 @@ export function ProjectChrome({ activeIndex }: { activeIndex: number }) {
 
   return (
     <>
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-30 px-5 py-5 sm:px-8 sm:py-6">
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-30 bg-[var(--irene-bg)]/90 px-5 py-4 backdrop-blur-sm sm:px-8 md:bg-transparent md:py-6 md:backdrop-blur-none">
         <IndexLink
           href={ireneIndexHref}
           className="pointer-events-auto text-[var(--irene-paper)]"

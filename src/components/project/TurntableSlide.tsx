@@ -10,7 +10,7 @@ export function TurntableSlide({ slide }: { slide: IreneSlide }) {
 
   return (
     <SlideShell id={`slide-${slide.id}`} className="bg-[var(--irene-bg)]">
-      <div className="slide relative flex h-full w-full items-center justify-center" tabIndex={0} {...tap}>
+      <div className="slide relative flex w-full flex-col pt-10 md:h-full md:items-center md:justify-center md:pt-0" tabIndex={0} {...tap}>
         <div className="w-full max-w-[min(100vw,150vh)] px-0">
           <Turntable
             frameDir={ireneTurntable.frameDir}
