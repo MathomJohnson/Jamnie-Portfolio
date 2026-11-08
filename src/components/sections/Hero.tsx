@@ -16,35 +16,31 @@ export function Hero() {
         variants={stagger(0.11, 0.15)}
         className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-8 sm:gap-12 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] md:gap-16 lg:gap-24"
       >
-        {/* Width-driven on phones, height-driven above so the frame always hugs the
-            image and never leaves bare paper inside its border. */}
-        <motion.figure
-          variants={riseVariants}
-          className="relative mx-auto w-full sm:w-fit"
-        >
-          <RegistrationMarks />
-          <div className="mx-auto overflow-hidden border border-ink/20">
-            <motion.div
-              variants={wipeVariants}
-              className="relative h-[30vh] max-h-[24rem] min-h-[12rem] w-full sm:aspect-[3/4] sm:h-[min(58vh,34rem)] sm:max-h-none sm:min-h-0 sm:w-auto"
+        {/* Always the photo's own 3:4 shape. Width is the only constraint: capped on
+            phones, and never wider than its column or ~58vh above sm. */}
+        <motion.figure variants={riseVariants} className="w-full">
+          <div className="relative mx-auto w-full max-w-[18rem] sm:w-[min(100%,43.5vh)] sm:max-w-[25.5rem]">
+            <RegistrationMarks />
+            <div className="overflow-hidden border border-ink/20">
+              <motion.div variants={wipeVariants} className="relative aspect-[3/4] w-full">
+                <Image
+                  src={hero.portrait.src}
+                  alt={hero.portrait.alt}
+                  fill
+                  priority
+                  sizes="(min-width: 640px) 26rem, 18rem"
+                  className="object-cover object-top"
+                />
+              </motion.div>
+            </div>
+            <motion.figcaption
+              variants={fadeVariants}
+              className="mt-3 hidden justify-between font-mono text-[0.625rem] tracking-[0.22em] text-ink/45 uppercase sm:flex"
             >
-              <Image
-                src={hero.portrait.src}
-                alt={hero.portrait.alt}
-                fill
-                priority
-                sizes="(min-width: 640px) 45vh, 100vw"
-                className="object-cover object-top"
-              />
-            </motion.div>
+              <span>{site.name}</span>
+              <span>Fig. 01</span>
+            </motion.figcaption>
           </div>
-          <motion.figcaption
-            variants={fadeVariants}
-            className="mt-3 hidden justify-between font-mono sm:flex text-[0.625rem] tracking-[0.22em] text-ink/45 uppercase"
-          >
-            <span>{site.name}</span>
-            <span>Fig. 01</span>
-          </motion.figcaption>
         </motion.figure>
 
         <div>
